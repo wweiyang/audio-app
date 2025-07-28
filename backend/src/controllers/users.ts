@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import prisma from "../prisma/client.js";
 
 interface AuthRequest extends Request {
@@ -23,10 +23,10 @@ export const getCurrentUser = async (req: AuthRequest, res: Response) => {
             filename: true,
             description: true,
             category: true,
-            createdAt: true,
-          },
-        },
-      },
+            createdAt: true
+          }
+        }
+      }
     });
 
     if (!user) {
@@ -45,13 +45,11 @@ export const createUser = async (req: Request, res: Response) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-      return res
-        .status(400)
-        .json({ message: "Username and password required" });
+      return res.status(400).json({ message: "Username and password required" });
     }
 
     const existingUser = await prisma.user.findUnique({
-      where: { username },
+      where: { username }
     });
 
     if (existingUser) {
@@ -63,12 +61,12 @@ export const createUser = async (req: Request, res: Response) => {
     const user = await prisma.user.create({
       data: {
         username,
-        password: hashedPassword,
+        password: hashedPassword
       },
       select: {
         id: true,
-        username: true,
-      },
+        username: true
+      }
     });
 
     res.status(201).json(user);
@@ -98,8 +96,8 @@ export const updateUser = async (req: AuthRequest, res: Response) => {
       data: updateData,
       select: {
         id: true,
-        username: true,
-      },
+        username: true
+      }
     });
 
     res.json(user);
@@ -118,7 +116,7 @@ export const deleteUser = async (req: AuthRequest, res: Response) => {
     }
 
     await prisma.user.delete({
-      where: { id: parseInt(id) },
+      where: { id: parseInt(id) }
     });
 
     res.json({ message: "User deleted successfully" });
