@@ -3,10 +3,14 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import prisma from "../prisma/client.js";
+import { fileURLToPath } from "url";
 
 interface AuthRequest extends Request {
   user?: { id: number; username: string };
 }
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
