@@ -29,7 +29,7 @@ docker-compose up --build
 
 Open a new terminal and run:
 
-```bash
+```
 docker-compose exec backend npx prisma migrate dev --name init
 ```
 
@@ -61,14 +61,14 @@ See `/backend/README.md` for API endpoints and details.
 ## Development (For development only)
 
 - To run backend locally:
-  ```bash
+  ```
   cd backend
   npm install
   npx prisma generate
   npm run dev
   ```
 - To run frontend locally:
-  ```bash
+  ```
   cd frontend
   npm install
   npm run dev
