@@ -1,9 +1,18 @@
 import { Router } from "express";
+import {
+  uploadAudio,
+  listAudio,
+  playAudio,
+  deleteAudio,
+  upload,
+} from "../controllers/audio";
+import { authenticateToken } from "../middleware/auth";
+
 const router = Router();
 
-// Placeholder audio routes
-router.post("/upload", (req, res) => res.json({ message: "Upload audio" }));
-router.get("/", (req, res) => res.json({ message: "List audio files" }));
-router.get("/:id/play", (req, res) => res.json({ message: "Play audio" }));
+router.post("/upload", authenticateToken, upload.single("audio"), uploadAudio);
+router.get("/", authenticateToken, listAudio);
+router.get("/:id/play", authenticateToken, playAudio);
+router.delete("/:id", authenticateToken, deleteAudio);
 
 export default router;

@@ -1,9 +1,8 @@
 import { Router } from "express";
+import { login } from "../controllers/auth";
+
 const router = Router();
 
-// Placeholder login route
-router.post("/login", (req, res) => {
-  res.json({ message: "Login endpoint" });
-});
+router.post("/login", login);
 
 export default router;
