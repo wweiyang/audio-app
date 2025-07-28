@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import prisma from "../prisma/client";
+import prisma from "../prisma/client.js";
 
 interface AuthRequest extends Request {
   user?: { id: number; username: string };

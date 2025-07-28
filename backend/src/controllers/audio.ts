@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
-import prisma from "../prisma/client";
+import prisma from "../prisma/client.js";
 
 interface AuthRequest extends Request {
   user?: { id: number; username: string };
@@ -55,7 +55,6 @@ export const uploadAudio = async (req: AuthRequest, res: Response) => {
     }
 
     const allowedCategories = ["MUSIC", "RECORDING", "SOUNDEFFECT", "OTHER"];
-
     const { description, category } = req.body;
     const selectedCategory = allowedCategories.includes(category)
       ? category

@@ -5,8 +5,8 @@ import {
   playAudio,
   deleteAudio,
   upload,
-} from "../controllers/audio";
-import { authenticateToken } from "../middleware/auth";
+} from "../controllers/audio.js";
+import { authenticateToken } from "../middleware/auth.js";
 
 const router = Router();
 
