@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../api";
+import { userLogin } from "../../api";
 import styles from "./login.module.scss";
+import { useAuth } from "../../authentication/useAuth";
 
 const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const onFinish = async (values: { username: string; password: string }) => {
     setLoading(true);
     try {
-      const response = await login(values);
-      localStorage.setItem("token", response.token);
+      // const response = await userLogin(values);
+      // localStorage.setItem("token", response.token);
+      // localStorage.setItem("user", JSON.stringify(response.user));
       message.success("Login successful!");
       navigate("/account");
     } catch (error) {
