@@ -13,7 +13,7 @@ const Audio: React.FC = () => {
       <HeaderMenu />
       <Content className={styles.audio}>
         <h1>Manage Your Audio Files</h1>
-        {/* <AudioUploadForm /> */}
+        <AudioUploadForm />
         {/* <AudioList /> */}
       </Content>
     </Layout>

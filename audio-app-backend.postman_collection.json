@@ -2,7 +2,7 @@
   "info": {
     "name": "Audio App Backend API",
     "_postman_id": "audio-app-backend-api-collection",
-    "description": "Test all endpoints for the Audio App backend.\n\nAudio category must be one of: MUSIC, RECORDING, SOUNDEFFECT, OTHER.",
+    "description": "Test all endpoints for the Audio App backend.\n\nAudio category must be one of: Music, Recording, Sound, Other.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -109,8 +109,8 @@
             {
               "key": "category",
               "type": "text",
-              "value": "MUSIC",
-              "description": "Must be one of: MUSIC, RECORDING, SOUNDEFFECT, OTHER"
+              "value": "Music",
+              "description": "Must be one of: Music, Recording, Sound, Other"
             }
           ]
         },

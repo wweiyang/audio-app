@@ -16,10 +16,10 @@ Authorization: Bearer <token>
 
 The `category` field for audio files must be one of the following pre-set values:
 
-- `MUSIC`
-- `RECORDING`
-- `SOUNDEFFECT`
-- `OTHER`
+- `Music`
+- `Recording`
+- `Sound`
+- `Other`
 
 ## Endpoints
 
@@ -82,7 +82,7 @@ Get current user profile with audio files.
       "id": 1,
       "filename": "audio.mp3",
       "description": "My audio file",
-      "category": "MUSIC",
+      "category": "Music",
       "createdAt": "2024-01-01T00:00:00.000Z"
     }
   ]
@@ -133,7 +133,7 @@ Upload an audio file.
     "id": 1,
     "filename": "1234567890-123456789.mp3",
     "description": "My audio file",
-    "category": "MUSIC",
+    "category": "Music",
     "createdAt": "2024-01-01T00:00:00.000Z"
   }
 }
@@ -153,7 +153,7 @@ List all audio files for the current user.
     "id": 1,
     "filename": "1234567890-123456789.mp3",
     "description": "My audio file",
-    "category": "MUSIC",
+    "category": "Music",
     "createdAt": "2024-01-01T00:00:00.000Z"
   }
 ]

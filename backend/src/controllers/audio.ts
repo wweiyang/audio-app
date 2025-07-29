@@ -58,11 +58,11 @@ export const uploadAudio = async (req: AuthRequest, res: Response) => {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
-    const allowedCategories = ["MUSIC", "RECORDING", "SOUNDEFFECT", "OTHER"];
+    const allowedCategories = ["Music", "Recording", "Sound", "Other"];
     const { description, category } = req.body;
     const selectedCategory = allowedCategories.includes(category)
       ? category
-      : "OTHER";
+      : "Other";
 
     const audio = await prisma.audio.create({
       data: {

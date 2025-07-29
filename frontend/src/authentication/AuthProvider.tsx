@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { userLogin } from "../api";
 import { AuthContext, User } from "./AuthContext";
 
-const TOKEN_KEY = "authToken";
-const USER_KEY = "user";
+export const TOKEN_KEY = "authToken";
+export const USER_KEY = "user";
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

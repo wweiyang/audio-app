@@ -8,10 +8,10 @@ datasource db {
 }
 
 enum AudioCategory {
-  MUSIC
-  RECORDING
-  SOUNDEFFECT
-  OTHER
+  Music
+  Recording
+  Sound
+  Other
 }
 
 model User {
