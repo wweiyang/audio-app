@@ -23,7 +23,6 @@ docker-compose up --build
 ```
 
 - This will start the database, backend, and frontend containers.
-- Wait until you see `Server running on port 5001` in the logs.
 
 ### 4. Run Database Migrations
 
