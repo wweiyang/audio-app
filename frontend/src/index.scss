@@ -1,0 +1,46 @@
+// @import "~antd/dist/antd.css"; // Import Ant Design styles
+
+// Global styles
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f0f2f5; // Light background color
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #333; // Darker text color for headings
+}
+
+// a {
+//   color: #1890ff; // Ant Design primary color for links
+//   text-decoration: none;
+
+//   &:hover {
+//     text-decoration: underline; // Underline on hover
+//   }
+// }
+
+// // Button styles
+// .ant-btn {
+//   border-radius: 4px; // Rounded corners for buttons
+// }
+
+// // Form styles
+// .ant-form-item {
+//   margin-bottom: 16px; // Space between form items
+// }
+
+// // Audio player styles
+// .audio-player {
+//   margin-top: 20px; // Space above audio player
+//   background-color: #fff; // White background for player
+//   padding: 10px; // Padding around player
+//   border-radius: 8px; // Rounded corners for player
+//   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Subtle shadow effect
+// }
