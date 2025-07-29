@@ -4,6 +4,7 @@ import AccountManagement from "../../components/AccountManagement";
 import { User } from "../../api";
 import { getUsers, createUser, updateUser, deleteUser } from "../../api";
 import styles from "./account.module.scss";
+import HeaderMenu from "../../components/HeaderMenu";
 
 const { Content } = Layout;
 
@@ -52,6 +53,7 @@ const Account: React.FC = () => {
 
   return (
     <Layout>
+      <HeaderMenu />
       <Content className={styles.account}>
         <h1>Account Management</h1>
         {/* <AccountManagement /> */}

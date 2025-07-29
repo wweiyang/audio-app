@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import { userLogin } from "../../api";
 import styles from "./login.module.scss";
 import { useAuth } from "../../authentication/useAuth";
 
