@@ -13,9 +13,7 @@ const Login: React.FC = () => {
   const onFinish = async (values: { username: string; password: string }) => {
     setLoading(true);
     try {
-      // const response = await userLogin(values);
-      // localStorage.setItem("token", response.token);
-      // localStorage.setItem("user", JSON.stringify(response.user));
+      await login(values);
       message.success("Login successful!");
       navigate("/account");
     } catch (error) {

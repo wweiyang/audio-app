@@ -14,7 +14,6 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-
           <Route
             path="/account"
             element={
@@ -23,8 +22,14 @@ const App: React.FC = () => {
               </ProtectedRoute>
             }
           />
-
-          <Route path="/audio" element={<Audio />} />
+          <Route
+            path="/audio"
+            element={
+              <ProtectedRoute>
+                <Audio />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

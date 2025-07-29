@@ -16,7 +16,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const login = async (values: { username: string; password: string }) => {
     try {
       const response = await userLogin(values);
-      if (response.success && response.user && response.token) {
+      if (response.user && response.token) {
         localStorage.setItem("user", JSON.stringify(response.user));
         localStorage.setItem("token", response.token);
         setIsLoggedIn(true);
@@ -26,6 +26,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       }
     } catch (error) {
       console.error("Login error:", error);
+      throw error;
     }
   };
 
