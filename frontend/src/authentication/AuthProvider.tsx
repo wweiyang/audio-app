@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { userLogin } from "../api";
-import { AuthContext, User } from "./AuthContext";
+import { AuthContext } from "./AuthContext";
 import { UserCredentials } from "../api/types";
+import { User } from "./types";
 
 export const TOKEN_KEY = "authToken";
 export const USER_KEY = "user";
