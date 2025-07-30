@@ -5,8 +5,6 @@ import Account from "./pages/account/Account";
 import Audio from "./pages/audio/Audio";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./authentication/AuthProvider";
-// import "antd/dist/antd.css";
-// import "./styles/index.scss";
 
 const App: React.FC = () => {
   return (
