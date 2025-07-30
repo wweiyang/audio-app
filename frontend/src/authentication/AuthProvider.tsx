@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { userLogin } from "../api";
 import { AuthContext, User } from "./AuthContext";
+import { UserCredentials } from "../api/types";
 
 export const TOKEN_KEY = "authToken";
 export const USER_KEY = "user";
@@ -16,7 +17,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setIsLoggedIn(!!token);
   }, []);
 
-  const login = async (values: { username: string; password: string }) => {
+  const login = async (values: UserCredentials) => {
     try {
       const response = await userLogin(values);
       if (response.user && response.token) {
