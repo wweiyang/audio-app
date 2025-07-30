@@ -35,23 +35,27 @@ export const userLogin = async (credentials: UserCredentials) => {
 //   return response.data;
 // };
 
-// export const updateUser = async (userId, userData, token) => {
-//   const response = await axios.put(`${API_URL}/users/${userId}`, userData, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-//   return response.data;
-// };
+export const updateUser = async (
+  userId: number,
+  userData: UserCredentials,
+  token: string
+) => {
+  const response = await axios.put(`${API_URL}/users/${userId}`, userData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
 
-// export const deleteUser = async (userId, token) => {
-//   const response = await axios.delete(`${API_URL}/users/${userId}`, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-//   return response.data;
-// };
+export const deleteUser = async (userId: number, token: string) => {
+  const response = await axios.delete(`${API_URL}/users/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
 
 // // Audio Management API
 // export const uploadAudio = async (formData, token) => {

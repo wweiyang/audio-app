@@ -1,130 +1,119 @@
-import React, { useEffect, useState } from "react";
-import { Layout, Table, Button, Modal, Form, Input } from "antd";
-import AccountManagement from "../../components/AccountManagement";
-import { User } from "../../api";
-import { getUsers, createUser, updateUser, deleteUser } from "../../api";
-import styles from "./account.module.scss";
+import React, { useState } from "react";
+import { Layout, Card, Button, Modal, Form, Input, message } from "antd";
+import { updateUser, deleteUser } from "../../api";
 import HeaderMenu from "../../components/HeaderMenu";
+import { useAuth } from "../../authentication/useAuth";
+import { UserCredentials } from "../../api/types";
 
 const { Content } = Layout;
 
 const Account: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const { user, logout } = useAuth();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  if (!user) return null;
 
-  const fetchUsers = async () => {
-    const userList = await getUsers();
-    setUsers(userList);
-  };
-
-  const handleAddUser = () => {
-    setCurrentUser(null);
-    setIsModalVisible(true);
-  };
-
-  const handleEditUser = (user: User) => {
-    setCurrentUser(user);
-    setIsModalVisible(true);
-  };
-
-  const handleDeleteUser = async (userId: string) => {
-    await deleteUser(userId);
-    fetchUsers();
-  };
-
-  const handleModalOk = async (values: User) => {
-    if (currentUser) {
-      await updateUser(currentUser.id, values);
-    } else {
-      await createUser(values);
+  const handleUpdate = async (values: UserCredentials) => {
+    setLoading(true);
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("Authentication token not found.");
+        setLoading(false);
+        return;
+      }
+      await updateUser(user.id, values, token);
+      message.success("Account updated!");
+    } catch (error) {
+      message.error("Failed to update account.");
+      console.error("Update error:", error);
+    } finally {
+      setLoading(false);
     }
-    setIsModalVisible(false);
-    fetchUsers();
   };
 
-  const handleModalCancel = () => {
-    setIsModalVisible(false);
+  const handleDelete = async () => {
+    setLoading(true);
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        message.error("Authentication token not found.");
+        setLoading(false);
+        return;
+      }
+      await deleteUser(user.id, token);
+      message.success("Account deleted.");
+      setIsModalVisible(false);
+      logout();
+    } catch (error) {
+      message.error("Failed to delete account.");
+      console.error("Delete error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <Layout>
       <HeaderMenu />
-      <Content className={styles.account}>
-        <h1>Account Management</h1>
-        {/* <AccountManagement /> */}
-        <div>
-          <Button type="primary" onClick={handleAddUser}>
-            Add User
-          </Button>
-          <Table dataSource={users} rowKey="id">
-            <Table.Column title="Name" dataIndex="name" />
-            <Table.Column title="Email" dataIndex="email" />
-            <Table.Column
-              title="Actions"
-              render={(text, user) => (
-                <>
-                  <Button onClick={() => handleEditUser(user)}>Edit</Button>
-                  <Button onClick={() => handleDeleteUser(user.id)} danger>
-                    Delete
-                  </Button>
-                </>
-              )}
-            />
-          </Table>
-          <Modal
-            title={currentUser ? "Edit User" : "Add User"}
-            open={isModalVisible}
-            onCancel={handleModalCancel}
-            footer={null}
+      <Content>
+        <Card title="Account Details">
+          <p>
+            <b>Username:</b> {user.username}
+          </p>
+          <Form
+            form={form}
+            layout="vertical"
+            initialValues={{ username: user.username }}
+            onFinish={handleUpdate}
           >
-            <UserForm
-              initialValues={currentUser || { name: "", email: "" }}
-              onFinish={handleModalOk}
-            />
-          </Modal>
-        </div>
+            <Form.Item
+              label="Username"
+              name="username"
+              rules={[
+                { required: true, message: "Please input your username" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                { required: true, message: "Please input your password" },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" loading={loading}>
+                Update Account
+              </Button>
+            </Form.Item>
+          </Form>
+          <Button
+            onClick={() => setIsModalVisible(true)}
+            danger
+            loading={loading}
+          >
+            Delete Account
+          </Button>
+        </Card>
+        <Modal
+          title="Are you sure you want to delete your account?"
+          open={isModalVisible}
+          onCancel={() => setIsModalVisible(false)}
+          footer={null}
+          destroyOnHidden
+        >
+          <Button onClick={handleDelete} danger loading={loading}>
+            Yes
+          </Button>
+        </Modal>
       </Content>
     </Layout>
-  );
-};
-
-const UserForm: React.FC<{
-  initialValues: User;
-  onFinish: (values: User) => void;
-}> = ({ initialValues, onFinish }) => {
-  const [form] = Form.useForm();
-
-  const onFinishForm = (values: User) => {
-    onFinish(values);
-  };
-
-  return (
-    <Form form={form} initialValues={initialValues} onFinish={onFinishForm}>
-      <Form.Item
-        name="name"
-        label="Name"
-        rules={[{ required: true, message: "Please input the name!" }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name="email"
-        label="Email"
-        rules={[{ required: true, message: "Please input the email!" }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
   );
 };
 
