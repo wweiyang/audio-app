@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Layout, Card, Button, Modal, Form, Input, message } from "antd";
+import { Layout, Button, Modal, Form, Input, message } from "antd";
 import { updateUser, deleteUser } from "../../api/apis";
 import HeaderMenu from "../../components/HeaderMenu";
 import { useAuth } from "../../authentication/useAuth";
 import { UserCredentials } from "../../api/types";
+import styles from "./account.module.scss";
 
 const { Content } = Layout;
 
@@ -58,49 +59,45 @@ const Account: React.FC = () => {
   return (
     <Layout>
       <HeaderMenu />
-      <Content>
-        <Card title="Account Details">
-          <p>
-            <b>Username:</b> {user.username}
-          </p>
-          <Form
-            form={form}
-            layout="vertical"
-            initialValues={{ username: user.username }}
-            onFinish={handleUpdate}
+      <Content className={styles.content}>
+        <h1 className={styles.header}>Account</h1>
+        <p>
+          <b>Username:</b> {user.username}
+        </p>
+        <Form
+          form={form}
+          layout="vertical"
+          initialValues={{ username: user.username }}
+          onFinish={handleUpdate}
+        >
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[{ required: true, message: "Please input your username" }]}
           >
-            <Form.Item
-              label="Username"
-              name="username"
-              rules={[
-                { required: true, message: "Please input your username" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                { required: true, message: "Please input your password" },
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit" loading={loading}>
-                Update Account
-              </Button>
-            </Form.Item>
-          </Form>
-          <Button
-            onClick={() => setIsModalVisible(true)}
-            danger
-            loading={loading}
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: "Please input your password" }]}
           >
-            Delete Account
-          </Button>
-        </Card>
+            <Input.Password />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" loading={loading}>
+              Update Account
+            </Button>
+          </Form.Item>
+        </Form>
+        <Button
+          onClick={() => setIsModalVisible(true)}
+          danger
+          loading={loading}
+        >
+          Delete Account
+        </Button>
+
         <Modal
           title="Are you sure you want to delete your account?"
           open={isModalVisible}

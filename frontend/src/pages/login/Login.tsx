@@ -19,7 +19,7 @@ const Login: React.FC = () => {
     try {
       await login(values);
       message.success("Login successful!");
-      navigate("/account");
+      navigate("/audio");
     } catch (error) {
       message.error("Login failed. Please check your credentials.");
       console.error("Login error:", error);
