@@ -4,8 +4,8 @@ import { UserCredentials } from "./types";
 const API_URL = "http://localhost:5001/api";
 
 // Authentication API
-export const userLogin = async (credentials: UserCredentials) => {
-  const response = await axios.post(`${API_URL}/auth/login`, credentials);
+export const userLogin = async (userCredentials: UserCredentials) => {
+  const response = await axios.post(`${API_URL}/auth/login`, userCredentials);
   return response.data;
 };
 
@@ -26,25 +26,32 @@ export const userLogin = async (credentials: UserCredentials) => {
 //   return response.data;
 // };
 
-// export const createUser = async (userData, token) => {
-//   const response = await axios.post(`${API_URL}/users`, userData, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-//   return response.data;
-// };
-
-export const updateUser = async (
-  userId: number,
-  userData: UserCredentials,
+export const createUser = async (
+  userCredentials: UserCredentials,
   token: string
 ) => {
-  const response = await axios.put(`${API_URL}/users/${userId}`, userData, {
+  const response = await axios.post(`${API_URL}/users`, userCredentials, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  return response.data;
+};
+
+export const updateUser = async (
+  userId: number,
+  userCredentials: UserCredentials,
+  token: string
+) => {
+  const response = await axios.put(
+    `${API_URL}/users/${userId}`,
+    userCredentials,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return response.data;
 };
 
