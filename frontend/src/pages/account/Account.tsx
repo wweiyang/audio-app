@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Card, Button, Modal, Form, Input, message } from "antd";
-import { updateUser, deleteUser } from "../../api";
+import { updateUser, deleteUser } from "../../api/apis";
 import HeaderMenu from "../../components/HeaderMenu";
 import { useAuth } from "../../authentication/useAuth";
 import { UserCredentials } from "../../api/types";
