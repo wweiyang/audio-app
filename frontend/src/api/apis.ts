@@ -59,7 +59,7 @@ export const deleteUser = async (userId: number, token: string) => {
   return response.data;
 };
 
-// // Audio Management API
+// Audio Management API
 export const uploadAudio = async (formData: FormData, token: string) => {
   const response = await axios.post(`${API_URL}/audio/upload`, formData, {
     headers: {
@@ -70,14 +70,14 @@ export const uploadAudio = async (formData: FormData, token: string) => {
   return response.data;
 };
 
-// export const getUserAudio = async (token) => {
-//   const response = await axios.get(`${API_URL}/audio`, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-//   return response.data;
-// };
+export const getUserAudio = async (token: string) => {
+  const response = await axios.get(`${API_URL}/audio`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
 
 // export const deleteAudio = async (audioId, token) => {
 //   const response = await axios.delete(`${API_URL}/audio/${audioId}`, {

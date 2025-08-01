@@ -1,6 +1,6 @@
 import React from "react";
-// import AudioList from "../../components/AudioList";
 import AudioUploadForm from "../../components/AudioUploadForm";
+import AudioList from "../../components/AudioList";
 import { Layout } from "antd";
 import styles from "./audio.module.scss";
 import HeaderMenu from "../../components/HeaderMenu";
@@ -14,7 +14,7 @@ const Audio: React.FC = () => {
       <Content className={styles.content}>
         <h1 className={styles.header}>Manage Audio Files</h1>
         <AudioUploadForm />
-        {/* <AudioList /> */}
+        <AudioList />
       </Content>
     </Layout>
   );
