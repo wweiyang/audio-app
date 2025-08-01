@@ -24,7 +24,7 @@ const AudioUploadForm: React.FC = () => {
   }) => {
     const { description, category } = values;
     if (!file) {
-      message.error("Please select an audio file.");
+      message.error("Please select an audio file");
       return;
     }
     if (!file.originFileObj) {
@@ -56,10 +56,10 @@ const AudioUploadForm: React.FC = () => {
   };
 
   return (
-    <Form form={form} onFinish={handleSubmit}>
+    <Form form={form} layout="vertical" onFinish={handleSubmit}>
       <Form.Item
-        name="description"
         label="Description"
+        name="description"
         rules={[{ required: true, message: "Please enter a description" }]}
       >
         <Input
@@ -69,8 +69,8 @@ const AudioUploadForm: React.FC = () => {
         />
       </Form.Item>
       <Form.Item
-        name="category"
         label="Category"
+        name="category"
         rules={[{ required: true, message: "Please select a category" }]}
       >
         <Select

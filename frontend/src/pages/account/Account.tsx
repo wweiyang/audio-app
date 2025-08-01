@@ -5,6 +5,7 @@ import HeaderMenu from "../../components/HeaderMenu";
 import { useAuth } from "../../authentication/useAuth";
 import { UserCredentials } from "../../api/types";
 import styles from "./account.module.scss";
+import { TOKEN_KEY } from "../../authentication/AuthProvider";
 
 const { Content } = Layout;
 
@@ -19,14 +20,15 @@ const Account: React.FC = () => {
   const handleUpdate = async (values: UserCredentials) => {
     setLoading(true);
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
+      const authToken = localStorage.getItem(TOKEN_KEY);
+      if (!authToken) {
         console.error("Authentication token not found.");
         setLoading(false);
         return;
       }
-      await updateUser(user.id, values, token);
+      await updateUser(user.id, values, authToken);
       message.success("Account updated!");
+      form.resetFields();
     } catch (error) {
       message.error("Failed to update account.");
       console.error("Update error:", error);
@@ -38,13 +40,13 @@ const Account: React.FC = () => {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
+      const authToken = localStorage.getItem(TOKEN_KEY);
+      if (!authToken) {
         message.error("Authentication token not found.");
         setLoading(false);
         return;
       }
-      await deleteUser(user.id, token);
+      await deleteUser(user.id, authToken);
       message.success("Account deleted.");
       setIsModalVisible(false);
       logout();
@@ -60,7 +62,7 @@ const Account: React.FC = () => {
     <Layout>
       <HeaderMenu />
       <Content className={styles.content}>
-        <h1 className={styles.header}>Account</h1>
+        <h1 className={styles.header}>Manage Account</h1>
         <p>
           <b>Username:</b> {user.username}
         </p>
