@@ -34,8 +34,7 @@ const Login: React.FC = () => {
   }) => {
     setLoading(true);
     try {
-      // You may want to get a token if needed, or adjust as per your backend
-      await createUser(values, ""); // Pass empty string if no token required for sign up
+      await createUser(values, "");
       message.success("Sign up successful! Please log in.");
       setIsSignUp(false);
     } catch (error) {
