@@ -9,11 +9,6 @@ export const userLogin = async (userCredentials: UserCredentials) => {
   return response.data;
 };
 
-// export const register = async (userData) => {
-//   const response = await axios.post(`${API_URL}/auth/register`, userData);
-//   return response.data;
-// };
-
 // Account Management API
 
 // TODO: Will need to impletement this in the backend IF REQUIRED
@@ -65,7 +60,7 @@ export const deleteUser = async (userId: number, token: string) => {
 };
 
 // // Audio Management API
-export const uploadAudio = async (formData, token) => {
+export const uploadAudio = async (formData: FormData, token: string) => {
   const response = await axios.post(`${API_URL}/audio/upload`, formData, {
     headers: {
       Authorization: `Bearer ${token}`,
