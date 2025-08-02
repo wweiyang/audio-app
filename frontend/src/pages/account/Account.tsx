@@ -10,7 +10,7 @@ import {
   Typography,
 } from "antd";
 import { updateUser, deleteUser, getCurrentUser } from "../../api/apis";
-import HeaderMenu from "../../components/HeaderMenu";
+import HeaderMenu from "../../components/HeaderMenu/HeaderMenu";
 import { useAuth } from "../../authentication/useAuth";
 import { UserCredentials } from "../../api/types";
 import styles from "./account.module.scss";

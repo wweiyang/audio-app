@@ -29,7 +29,6 @@ const HeaderMenu: React.FC = () => {
         theme="dark"
         mode="horizontal"
         selectedKeys={[selectedKey]}
-        style={{ lineHeight: "64px" }}
         items={menuItems}
       />
     </Header>

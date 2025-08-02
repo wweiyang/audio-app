@@ -3,9 +3,10 @@ import { Form, Input, Button, Upload, message, Select } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import type { UploadFile } from "antd/es/upload/interface";
 import type { UploadChangeParam } from "antd/es/upload";
-import { uploadAudio } from "../api/apis";
-import { TOKEN_KEY } from "../authentication/AuthProvider";
-import { AUDIO_CATEGORIES } from "../constants/constants";
+import { uploadAudio } from "../../api/apis";
+import { TOKEN_KEY } from "../../authentication/AuthProvider";
+import { AUDIO_CATEGORIES } from "../../constants/constants";
+import styles from "./audio-upload-form.module.scss";
 
 const AudioUploadForm: React.FC = () => {
   const [file, setFile] = useState<UploadFile | null>(null);
@@ -55,7 +56,7 @@ const AudioUploadForm: React.FC = () => {
       form={form}
       layout="vertical"
       onFinish={handleSubmit}
-      style={{ marginBottom: "56px" }}
+      className={styles.form}
     >
       <Form.Item
         label="Description"
@@ -81,7 +82,7 @@ const AudioUploadForm: React.FC = () => {
         label="Upload Audio"
         required
         help="Only MP3, WAV, AVI and MPEG files are allowed."
-        style={{ marginBottom: "36px" }}
+        className={styles.uploadAudio}
       >
         <Upload
           fileList={file ? [file] : []}
