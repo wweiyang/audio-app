@@ -5,7 +5,7 @@ import type { UploadFile } from "antd/es/upload/interface";
 import type { UploadChangeParam } from "antd/es/upload";
 import { uploadAudio } from "../api/apis";
 import { TOKEN_KEY } from "../authentication/AuthProvider";
-import { AUDIO_CATEGORIES } from "../constants";
+import { AUDIO_CATEGORIES } from "../constants/constants";
 
 const AudioUploadForm: React.FC = () => {
   const [file, setFile] = useState<UploadFile | null>(null);
