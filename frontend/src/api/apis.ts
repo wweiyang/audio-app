@@ -79,6 +79,20 @@ export const getUserAudio = async (token: string) => {
   return response.data;
 };
 
+export const playAudio = async (
+  audioId: number,
+  token: string
+): Promise<string> => {
+  const response = await axios.get(`${API_URL}/audio/${audioId}/play`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    responseType: "blob",
+  });
+  // Create a Blob URL for the audio file
+  return URL.createObjectURL(response.data);
+};
+
 // export const deleteAudio = async (audioId, token) => {
 //   const response = await axios.delete(`${API_URL}/audio/${audioId}`, {
 //     headers: {
