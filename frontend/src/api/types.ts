@@ -11,7 +11,3 @@ export interface AudioInfo {
   category: string;
   createdAt: string;
 }
-
-export interface AudioForPlay {
-  url: string;
-}
