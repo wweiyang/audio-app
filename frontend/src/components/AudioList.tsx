@@ -1,53 +1,58 @@
 import React, { useEffect, useState } from "react";
-import { List, Typography, Button } from "antd";
+import { List, Button, Card } from "antd";
 import { getUserAudio } from "../api/apis";
 import { TOKEN_KEY } from "../authentication/AuthProvider";
-// import Player from "./Player";
+import { AudioInfo } from "../api/types";
+import Player from "./Player";
 
-const { Title } = Typography;
+// const { Title } = Typography;
 
 const AudioList: React.FC = () => {
-  const [audioFiles, setAudioFiles] = useState<Audio[]>([]);
-  const [selectedAudio, setSelectedAudio] = useState<Audio | null>(null);
+  const [audioFiles, setAudioFiles] = useState<AudioInfo[]>([]);
+  const [selectedAudio, setSelectedAudio] = useState<AudioInfo | null>(null);
 
+  const fetchAudioFiles = async () => {
+    try {
+      // const response = await fetch("/api/audio"); // Adjust the endpoint as necessary
+      // const data = await response.json();
+      const data = await getUserAudio(localStorage.getItem(TOKEN_KEY) || "");
+      setAudioFiles(data);
+    } catch (error) {
+      console.error("Error fetching audio files:", error);
+    }
+  };
   useEffect(() => {
-    const fetchAudioFiles = async () => {
-      try {
-        // const response = await fetch("/api/audio"); // Adjust the endpoint as necessary
-        // const data = await response.json();
-        const data = await getUserAudio(localStorage.getItem(TOKEN_KEY) || "");
-        setAudioFiles(data);
-      } catch (error) {
-        console.error("Error fetching audio files:", error);
-      }
-    };
-
     fetchAudioFiles();
   }, []);
 
-  const handlePlay = (audio: Audio) => {
+  const handlePlay = (audio: AudioInfo) => {
     setSelectedAudio(audio);
   };
 
   return (
-    <div>
-      <Title level={2}>My Audio Files</Title>
+    <Card title="Audio Files">
+      {/* <Title level={2}>Audio Files</Title> */}
+      <Button onClick={fetchAudioFiles} style={{ marginBottom: 16 }}>
+        Refresh
+      </Button>
       <List
         itemLayout="horizontal"
         dataSource={audioFiles}
-        renderItem={(item) => (
+        renderItem={(audio) => (
           <List.Item>
             <List.Item.Meta
-              title={<a onClick={() => handlePlay(item)}>{item.title}</a>}
-              description={item.description}
+              title={
+                <a onClick={() => handlePlay(audio)}>{audio.originalname}</a>
+              }
+              description={audio.description}
             />
-            <Button onClick={() => handlePlay(item)}>Play</Button>
+            <Button onClick={() => handlePlay(audio)}>Play</Button>
           </List.Item>
         )}
       />
       {/* {selectedAudio && <Player audio={selectedAudio} />} */}
-      {selectedAudio && <h2>Now Playing: {selectedAudio.title}</h2>}
-    </div>
+      {selectedAudio && <h2>Selected audio: {selectedAudio.originalname}</h2>}
+    </Card>
   );
 };
 
