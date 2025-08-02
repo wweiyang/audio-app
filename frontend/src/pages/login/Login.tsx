@@ -18,6 +18,7 @@ const Login: React.FC = () => {
     setLoading(true);
     try {
       await login(values);
+
       message.success("Login successful!");
       navigate("/audio");
     } catch (error) {
@@ -35,6 +36,7 @@ const Login: React.FC = () => {
     setLoading(true);
     try {
       await createUser(values, "");
+
       message.success("Sign up successful! Please log in.");
       setIsSignUp(false);
     } catch (error) {

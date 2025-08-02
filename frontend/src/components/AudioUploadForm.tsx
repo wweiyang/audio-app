@@ -40,6 +40,7 @@ const AudioUploadForm: React.FC = () => {
         return;
       }
       await uploadAudio(formData, authToken);
+
       message.success("Upload successful!");
       setFile(null);
       form.resetFields();

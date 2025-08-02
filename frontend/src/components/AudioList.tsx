@@ -15,6 +15,7 @@ const AudioList: React.FC = () => {
   const fetchAudioFiles = async () => {
     try {
       const data = await getUserAudio(localStorage.getItem(TOKEN_KEY) || "");
+
       setAudioFiles(data);
     } catch (error) {
       console.error("Error fetching audio files:", error);
@@ -31,10 +32,12 @@ const AudioList: React.FC = () => {
 
     try {
       const audioSrc = await playAudio(audio.id, authToken);
+
       if (!audioSrc) {
         console.error("Audio source not found");
         return;
       }
+
       setAudioSource(audioSrc);
       setSelectedAudio(audio);
     } catch (err) {
