@@ -21,6 +21,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const login = async (values: UserCredentials) => {
     try {
       const response = await userLogin(values);
+
       if (response.user && response.token) {
         localStorage.setItem(USER_KEY, JSON.stringify(response.user));
         localStorage.setItem(TOKEN_KEY, response.token);
@@ -43,7 +44,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, user, login, logout, setUser }}>
       {children}
     </AuthContext.Provider>
   );

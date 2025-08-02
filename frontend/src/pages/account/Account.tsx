@@ -9,7 +9,7 @@ import {
   Flex,
   Typography,
 } from "antd";
-import { updateUser, deleteUser } from "../../api/apis";
+import { updateUser, deleteUser, getCurrentUser } from "../../api/apis";
 import HeaderMenu from "../../components/HeaderMenu";
 import { useAuth } from "../../authentication/useAuth";
 import { UserCredentials } from "../../api/types";
@@ -20,7 +20,7 @@ const { Content } = Layout;
 const { Title } = Typography;
 
 const Account: React.FC = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, setUser } = useAuth();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
@@ -36,7 +36,12 @@ const Account: React.FC = () => {
         setLoading(false);
         return;
       }
+
       await updateUser(user.id, values, authToken);
+      const updatedUser = await getCurrentUser(authToken);
+
+      setUser(updatedUser);
+
       message.success("Account updated!");
       form.resetFields();
     } catch (error) {
@@ -57,6 +62,7 @@ const Account: React.FC = () => {
         return;
       }
       await deleteUser(user.id, authToken);
+
       message.success("Account deleted.");
       setIsModalVisible(false);
       logout();
@@ -81,12 +87,7 @@ const Account: React.FC = () => {
         <p>
           <b>Username:</b> {user.username}
         </p>
-        <Form
-          form={form}
-          layout="vertical"
-          initialValues={{ username: user.username }}
-          onFinish={handleUpdate}
-        >
+        <Form form={form} layout="vertical" onFinish={handleUpdate}>
           <Form.Item
             label="Username"
             name="username"

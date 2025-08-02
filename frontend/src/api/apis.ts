@@ -10,16 +10,14 @@ export const userLogin = async (userCredentials: UserCredentials) => {
 };
 
 // Account Management API
-
-// TODO: Will need to impletement this in the backend IF REQUIRED
-// export const getUsers = async (token) => {
-//   const response = await axios.get(`${API_URL}/users`, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-//   return response.data;
-// };
+export const getCurrentUser = async (token: string) => {
+  const response = await axios.get(`${API_URL}/users/me`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
 
 export const createUser = async (
   userCredentials: UserCredentials,
@@ -89,7 +87,7 @@ export const playAudio = async (
     },
     responseType: "blob",
   });
-  // Create a Blob URL for the audio file
+
   return URL.createObjectURL(response.data);
 };
 

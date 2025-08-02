@@ -8,4 +8,5 @@ export interface AuthContextType {
   user: User | null;
   login: (values: { username: string; password: string }) => Promise<void>;
   logout: () => void;
+  setUser: (user: User) => void;
 }
