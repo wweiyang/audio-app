@@ -22,11 +22,12 @@ model User {
 }
 
 model Audio {
-  id          Int      @id @default(autoincrement())
-  filename    String
-  description String
-  category    AudioCategory
-  user        User     @relation(fields: [userId], references: [id])
-  userId      Int
-  createdAt   DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  filename     String
+  originalname String
+  description  String
+  category     AudioCategory
+  user         User     @relation(fields: [userId], references: [id])
+  userId       Int
+  createdAt    DateTime @default(now())
 }

@@ -67,6 +67,7 @@ export const uploadAudio = async (req: AuthRequest, res: Response) => {
     const audio = await prisma.audio.create({
       data: {
         filename: req.file.filename,
+        originalname: req.file.originalname,
         description: description || "",
         category: selectedCategory,
         userId: req.user.id,
@@ -78,6 +79,7 @@ export const uploadAudio = async (req: AuthRequest, res: Response) => {
       audio: {
         id: audio.id,
         filename: audio.filename,
+        originalname: audio.originalname,
         description: audio.description,
         category: audio.category,
         createdAt: audio.createdAt,
@@ -101,6 +103,7 @@ export const listAudio = async (req: AuthRequest, res: Response) => {
       select: {
         id: true,
         filename: true,
+        originalname: true,
         description: true,
         category: true,
         createdAt: true,
