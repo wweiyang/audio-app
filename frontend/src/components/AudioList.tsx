@@ -47,7 +47,7 @@ const AudioList: React.FC = () => {
   return (
     <Card title="Audio Files">
       <Flex justify="space-between" align="center" style={{ marginBottom: 16 }}>
-        <Button onClick={fetchAudioFiles}>Refresh</Button>
+        <Button onClick={fetchAudioFiles}>Refresh list</Button>
         <Flex align="center" gap={24}>
           {selectedAudio && (
             <Text>
