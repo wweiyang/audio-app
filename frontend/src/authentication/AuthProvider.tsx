@@ -14,8 +14,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem(TOKEN_KEY);
-    setIsLoggedIn(!!token);
+    const authToken = localStorage.getItem(TOKEN_KEY);
+    setIsLoggedIn(!!authToken);
   }, []);
 
   const login = async (values: UserCredentials) => {
