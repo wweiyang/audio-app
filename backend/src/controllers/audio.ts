@@ -4,6 +4,7 @@ import path from "path";
 import fs from "fs";
 import prisma from "../prisma/client.js";
 import { fileURLToPath } from "url";
+import mime from "mime";
 
 interface AuthRequest extends Request {
   user?: { id: number; username: string };
@@ -12,7 +13,6 @@ interface AuthRequest extends Request {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const uploadDir = path.join(__dirname, "../uploads");
@@ -32,7 +32,7 @@ const fileFilter = (
   file: Express.Multer.File,
   cb: multer.FileFilterCallback
 ) => {
-  const allowedTypes = ["audio/mpeg", "audio/wav", "audio/mp3", "audio/ogg"];
+  const allowedTypes = ["audio/mp3", "audio/avi", "audio/wav", "audio/mpeg"];
   if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
@@ -145,9 +145,12 @@ export const playAudio = async (req: AuthRequest, res: Response) => {
     const stat = fs.statSync(filePath);
     const fileSize = stat.size;
 
+    // To get the correct file type of the uploaded file
+    const mimeType = mime.lookup(filePath) || "application/octet-stream";
+
     const head = {
       "Content-Length": fileSize,
-      "Content-Type": "audio/mpeg",
+      "Content-Type": mimeType,
     };
     res.writeHead(200, head);
     fs.createReadStream(filePath).pipe(res);
