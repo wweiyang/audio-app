@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Layout, Button, Modal, Form, Input, message } from "antd";
+import {
+  Layout,
+  Button,
+  Modal,
+  Form,
+  Input,
+  message,
+  Flex,
+  Typography,
+} from "antd";
 import { updateUser, deleteUser } from "../../api/apis";
 import HeaderMenu from "../../components/HeaderMenu";
 import { useAuth } from "../../authentication/useAuth";
@@ -8,6 +17,7 @@ import styles from "./account.module.scss";
 import { TOKEN_KEY } from "../../authentication/AuthProvider";
 
 const { Content } = Layout;
+const { Title } = Typography;
 
 const Account: React.FC = () => {
   const { user, logout } = useAuth();
@@ -62,7 +72,12 @@ const Account: React.FC = () => {
     <Layout>
       <HeaderMenu />
       <Content className={styles.content}>
-        <h1 className={styles.header}>Manage Account</h1>
+        <Flex justify="space-between">
+          <Title>Manage Account</Title>
+          <Button type="default" onClick={logout} disabled={loading}>
+            Log out
+          </Button>
+        </Flex>
         <p>
           <b>Username:</b> {user.username}
         </p>
