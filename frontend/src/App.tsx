@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login/Login";
 import Account from "./pages/account/Account";
 import Audio from "./pages/audio/Audio";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { AuthProvider } from "./authentication/AuthProvider";
 
 const App: React.FC = () => {
