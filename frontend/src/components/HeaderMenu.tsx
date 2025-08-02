@@ -12,6 +12,17 @@ const HeaderMenu: React.FC = () => {
     ? "account"
     : "";
 
+  const menuItems = [
+    {
+      key: "audio",
+      label: <Link to="/audio">Audio</Link>,
+    },
+    {
+      key: "account",
+      label: <Link to="/account">Account</Link>,
+    },
+  ];
+
   return (
     <Header>
       <Menu
@@ -19,14 +30,8 @@ const HeaderMenu: React.FC = () => {
         mode="horizontal"
         selectedKeys={[selectedKey]}
         style={{ lineHeight: "64px" }}
-      >
-        <Menu.Item key="audio">
-          <Link to="/audio">Audio</Link>
-        </Menu.Item>
-        <Menu.Item key="account">
-          <Link to="/account">Account</Link>
-        </Menu.Item>
-      </Menu>
+        items={menuItems}
+      />
     </Header>
   );
 };
