@@ -52,6 +52,7 @@ const AudioList: React.FC = () => {
       <Flex
         justify="space-between"
         align="center"
+        gap={16}
         className={styles.topSection}
       >
         <Button onClick={fetchAudioFiles} className={styles.refreshButton}>
@@ -81,7 +82,7 @@ const AudioList: React.FC = () => {
               title={audio.originalname}
               description={audio.description}
             />
-            <Button onClick={() => handlePlay(audio)}>Select to play</Button>
+            <Button onClick={() => handlePlay(audio)}>Select</Button>
           </List.Item>
         )}
       />

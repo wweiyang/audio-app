@@ -8,7 +8,9 @@
 }
 
 .refreshButton {
-  margin-bottom: 16px;
+  @media (max-width: 600px) {
+    margin-bottom: 16px;
+  }
 }
 
 .selectedAudio {
