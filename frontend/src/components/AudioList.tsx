@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { List, Button, Card, message, Flex, Typography } from "antd";
 import { getUserAudio, playAudio } from "../api/apis";
+import { SyncOutlined } from "@ant-design/icons";
 import { TOKEN_KEY } from "../authentication/AuthProvider";
 import { AudioInfo } from "../api/types";
 
@@ -36,8 +37,6 @@ const AudioList: React.FC = () => {
       }
       setAudioSource(audioSrc);
       setSelectedAudio(audio);
-      // const audio = new Audio(audioSrc);
-      // audio.play();
     } catch (err) {
       message.error("Could not play audio");
       console.error(err);
@@ -47,7 +46,9 @@ const AudioList: React.FC = () => {
   return (
     <Card title="Audio Files">
       <Flex justify="space-between" align="center" style={{ marginBottom: 16 }}>
-        <Button onClick={fetchAudioFiles}>Refresh list</Button>
+        <Button onClick={fetchAudioFiles}>
+          Refresh list <SyncOutlined />
+        </Button>
         <Flex align="center" gap={24}>
           {selectedAudio && (
             <Text>
@@ -61,7 +62,13 @@ const AudioList: React.FC = () => {
         itemLayout="horizontal"
         dataSource={audioFiles}
         renderItem={(audio) => (
-          <List.Item>
+          <List.Item
+            style={{
+              backgroundColor:
+                audio.id === selectedAudio?.id ? "#e6f7ff" : "white",
+              padding: "12px 16px",
+            }}
+          >
             <List.Item.Meta
               title={audio.originalname}
               description={audio.description}
