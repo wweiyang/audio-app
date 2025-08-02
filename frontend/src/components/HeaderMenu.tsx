@@ -15,11 +15,11 @@ const HeaderMenu: React.FC = () => {
   const menuItems = [
     {
       key: "audio",
-      label: <Link to="/audio">Audio</Link>,
+      label: <Link to="/audio">Audio Files</Link>,
     },
     {
       key: "account",
-      label: <Link to="/account">Account</Link>,
+      label: <Link to="/account">My Account</Link>,
     },
   ];
 
