@@ -2,11 +2,11 @@
 
 This project is an audio hosting app that allows users to upload audio files, view their uploaded audio files, and select them to playback. It also includes account management features like creating, updating and deleting of account.
 
-Please follow the instructions below to set up the project with Docker. A [default username and password are also provided](##default-credentials) below, so that you can log in without creating an account.
+Please follow the instructions below to set up the project with Docker. A [default username and password are also provided](##default-credentials) below, so that you can log in without creating an account. Dockerfiles are also located in their respective folders (`backend` and `frontend`).
 
 ## Setup instructions (with Docker)
 
-Note: Dockerfiles are located in their respective folders (`backend` and `frontend`).
+Note: As this project was developed on macOS, some commands might not work properly on Windows. I have tried to include the equivalent commands.
 
 ### 1. Prerequisites
 
@@ -44,6 +44,19 @@ docker-compose exec backend npx prisma migrate dev --name init
 ```
 
 This will create the required tables in the database.
+
+⚠️ On Windows:
+
+- If `docker-compose exec` doesn't work, try using:
+
+  ```
+  docker exec -it <backend-container-name> npx prisma migrate dev --name init
+  ```
+
+- To find container name, you can use:
+  ```
+  docker ps
+  ```
 
 ### 5. Access the App
 
