@@ -27,7 +27,7 @@ model Audio {
   originalname String
   description  String
   category     AudioCategory
-  user         User     @relation(fields: [userId], references: [id])
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)  // cascading delete if user is deleted
   userId       Int
   createdAt    DateTime @default(now())
 }
