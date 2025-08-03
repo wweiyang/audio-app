@@ -13,7 +13,7 @@ Note: Dockerfiles are located in their respective folders (`backend` and `fronte
 - Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - Install [Postman](https://www.postman.com/downloads/) (if want to do API testing)
 
-### 2. Clean Up Old Containers (Recommended, or run if you encounter issues running Docker)
+### 2. Clean Up Old Containers (recommended, or do this step if you encounter issues running Docker)
 
 If you have run this project before, clean up old containers and volumes:
 
@@ -21,7 +21,7 @@ If you have run this project before, clean up old containers and volumes:
 docker-compose down -v
 ```
 
-If you still face issues and want to clean up all unused Docker resources:
+If you still face issues building and starting Docker, try cleaning up all unused Docker resources:
 
 ```
 docker system prune -af
