@@ -86,6 +86,7 @@ See `/backend/README.md` for API endpoints and details.
 The project consists of 3 main parts: frontend, backend and database
 
 ![System Architecture](./system-architecture.svg)
+Note: A PNG copy of the diagram is also included in the root folder, for easy viewing.
 
 ### Technology Stack
 
