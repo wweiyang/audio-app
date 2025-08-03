@@ -19,6 +19,11 @@ If you have run this project before, clean up old containers and volumes:
 
 ```
 docker-compose down -v
+```
+
+If you still face issues and want to clean up all unused Docker resources:
+
+```
 docker system prune -af
 ```
 
