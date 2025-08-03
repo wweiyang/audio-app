@@ -45,7 +45,7 @@ docker-compose exec backend npx prisma migrate dev --name init
 
 This will create the required tables in the database.
 
-⚠️ On Windows:
+#### ⚠️ On Windows:
 
 - If `docker-compose exec` doesn't work, try using:
 
