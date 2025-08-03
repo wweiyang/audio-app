@@ -3,13 +3,13 @@ import { Form, Input, Button, message, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
 import { useAuth } from "../../authentication/useAuth";
-import { createUser } from "../../api/apis"; // Import createUser
+import { createUser } from "../../api/apis";
 
 const { Title, Text } = Typography;
 
 const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [isSignUp, setIsSignUp] = useState(false); // Track form mode
+  const [isSignUp, setIsSignUp] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
