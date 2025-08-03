@@ -1,6 +1,10 @@
 @import "antd/dist/reset.css";
 
-// Global styles
+// Reset global styles
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
