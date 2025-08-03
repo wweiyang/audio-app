@@ -12,15 +12,6 @@ Most endpoints require authentication via JWT token in the Authorization header:
 Authorization: Bearer <token>
 ```
 
-## Audio Categories
-
-The `category` field for audio files must be one of the following pre-set values:
-
-- `Music`
-- `Recording`
-- `Sound`
-- `Other`
-
 ## Endpoints
 
 ### Authentication
@@ -198,3 +189,12 @@ Common HTTP status codes:
 - `403`: Forbidden
 - `404`: Not Found
 - `500`: Internal Server Error
+
+## Audio Categories
+
+The `category` field for audio files must be one of the following pre-set values:
+
+- `Music`
+- `Recording`
+- `Sound`
+- `Other`
