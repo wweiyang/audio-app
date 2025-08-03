@@ -4,10 +4,11 @@ import { describe, test, expect, vi } from "vitest";
 import Login from "./Login";
 
 const mockNavigate = vi.fn();
+const mockLogin = vi.fn();
 
 vi.mock("../../authentication/useAuth", () => ({
   useAuth: () => ({
-    login: vi.fn(),
+    login: mockLogin,
     logout: vi.fn(),
     user: null,
     isAuthenticated: false,
@@ -51,6 +52,7 @@ describe("Login", () => {
     fireEvent.click(screen.getByRole("button", { name: "Log in" }));
 
     await waitFor(() => {
+      expect(mockLogin).toHaveBeenCalled();
       expect(mockNavigate).toHaveBeenCalledWith("/audio");
     });
   });
