@@ -2,16 +2,16 @@
 
 This project is an audio hosting app that allows users to upload audio files, view their uploaded audio files, and select them to playback. It also includes account management features like creating, updating and deleting of account.
 
-Please follow the instructions below to set up the project with Docker. A default username and password are also provided below, so that you can log in without creating an account.
+Please follow the instructions below to set up the project with Docker. A [default username and password are also provided](##default-credentials) below, so that you can log in without creating an account.
 
-## Quick Start (with Docker)
+## Setup instructions (with Docker)
 
 Note: Dockerfiles are located in their respective folders (`backend` and `frontend`).
 
 ### 1. Prerequisites
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed
-- [Postman](https://www.postman.com/downloads/) (if needed for API testing)
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- Install [Postman](https://www.postman.com/downloads/) (if want to do API testing)
 
 ### 2. Clean Up Old Containers (Recommended, or run if you encounter issues running Docker)
 
@@ -45,21 +45,23 @@ docker-compose exec backend npx prisma migrate dev --name init
 
 This will create the required tables in the database.
 
-### 5. Test the API with Postman
-
-- Import the provided `audio-app-backend.postman_collection.json` file into Postman.
-- Use the "Auth - Login" request first. Copy the `token` from the response and set it as the `token` variable in the collection.
-- You should then be able to test all endpoints (user management, audio upload, etc.).
-
-### 6. Access the App
+### 5. Access the App
 
 - **Frontend:** [http://localhost:8080](http://localhost:8080)
 - **Backend API:** [http://localhost:5001](http://localhost:5001)
 - **Database:** localhost:7001 (PostgreSQL)
 
+### Optional: Test the API with Postman
+
+- Import the provided `audio-app-backend.postman_collection.json` file into Postman.
+- Use the "Auth - Login" request first. Copy the `token` from the response and set it as the `token` variable in the collection.
+- You should then be able to test all endpoints (user management, audio upload, etc.).
+
 ---
 
 ## Default Credentials
+
+You can use this default username and password to log in:
 
 - Username: `admin`
 - Password: `password123`

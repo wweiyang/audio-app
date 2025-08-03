@@ -1,5 +1,7 @@
 # Audio App Backend API
 
+This information is for the backend API endpoints. For instructions on how to run the project, please refer to the main README in the root folder.
+
 ## Base URL
 
 `http://localhost:5001`
@@ -198,3 +200,9 @@ The `category` field for audio files must be one of the following pre-set values
 - `Recording`
 - `Sound`
 - `Other`
+
+## Test the API with Postman
+
+- Import the provided `audio-app-backend.postman_collection.json` file into Postman.
+- Use the "Auth - Login" request first. Copy the `token` from the response and set it as the `token` variable in the collection.
+- You should then be able to test all endpoints (user management, audio upload, etc.).
