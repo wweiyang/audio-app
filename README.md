@@ -124,4 +124,4 @@ Note: A PNG copy of the diagram is also included in the root folder, for easy vi
 #### Infrastructure
 
 - **Containerization**: Docker & Docker Compose
-- **Web Server**: Nginx (for frontend)
+- **Web Server**: Nginx (for serving frontend)
