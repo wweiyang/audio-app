@@ -13,7 +13,6 @@ export const login = async (req: Request, res: Response) => {
         .json({ message: "Username and password required" });
     }
 
-    // Check if default admin user exists, create if not
     let user = await prisma.user.findUnique({
       where: { username },
     });

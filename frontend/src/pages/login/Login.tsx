@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button, message, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
 import { useAuth } from "../../authentication/useAuth";
 import { createUser } from "../../api/apis"; // Import createUser
+
+const { Title, Text } = Typography;
 
 const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -49,7 +51,7 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.login}>
-      <h2>{isSignUp ? "Sign Up" : "Login"}</h2>
+      <Title>{isSignUp ? "Sign Up" : "Login"}</Title>
       <Form
         name={isSignUp ? "signup" : "login"}
         onFinish={isSignUp ? onFinishSignUp : onFinishLogin}
@@ -77,19 +79,19 @@ const Login: React.FC = () => {
       </Form>
       <div className={styles.toggle}>
         {isSignUp ? (
-          <span>
+          <Text>
             Already have an account?{" "}
             <Button type="link" onClick={() => setIsSignUp(false)}>
               Log in
             </Button>
-          </span>
+          </Text>
         ) : (
-          <span>
+          <Text>
             Don't have an account?{" "}
             <Button type="link" onClick={() => setIsSignUp(true)}>
               Sign Up
             </Button>
-          </span>
+          </Text>
         )}
       </div>
     </div>

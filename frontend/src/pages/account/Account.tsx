@@ -17,23 +17,20 @@ import styles from "./account.module.scss";
 import { TOKEN_KEY } from "../../authentication/AuthProvider";
 
 const { Content } = Layout;
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const Account: React.FC = () => {
   const { user, logout, setUser } = useAuth();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
 
   if (!user) return null;
 
   const handleUpdate = async (values: UserCredentials) => {
-    setLoading(true);
     try {
       const authToken = localStorage.getItem(TOKEN_KEY);
       if (!authToken) {
         console.error("Authentication token not found.");
-        setLoading(false);
         return;
       }
 
@@ -47,18 +44,14 @@ const Account: React.FC = () => {
     } catch (error) {
       message.error("Failed to update account.");
       console.error("Update error:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
   const handleDelete = async () => {
-    setLoading(true);
     try {
       const authToken = localStorage.getItem(TOKEN_KEY);
       if (!authToken) {
         message.error("Authentication token not found.");
-        setLoading(false);
         return;
       }
       await deleteUser(user.id, authToken);
@@ -69,8 +62,6 @@ const Account: React.FC = () => {
     } catch (error) {
       message.error("Failed to delete account.");
       console.error("Delete error:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -80,13 +71,15 @@ const Account: React.FC = () => {
       <Content className={styles.content}>
         <Flex justify="space-between">
           <Title>Manage Account</Title>
-          <Button type="default" onClick={logout} disabled={loading}>
+          <Button type="default" onClick={logout}>
             Log out
           </Button>
         </Flex>
-        <p>
-          <b>Username:</b> {user.username}
-        </p>
+        <div className={styles.username}>
+          <Text>
+            <b>Username:</b> {user.username}
+          </Text>
+        </div>
         <Form form={form} layout="vertical" onFinish={handleUpdate}>
           <Form.Item
             label="Username"
@@ -103,16 +96,12 @@ const Account: React.FC = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" loading={loading}>
+            <Button type="primary" htmlType="submit">
               Update Account
             </Button>
           </Form.Item>
         </Form>
-        <Button
-          onClick={() => setIsModalVisible(true)}
-          danger
-          loading={loading}
-        >
+        <Button onClick={() => setIsModalVisible(true)} danger>
           Delete Account
         </Button>
 
@@ -123,7 +112,7 @@ const Account: React.FC = () => {
           footer={null}
           destroyOnHidden
         >
-          <Button onClick={handleDelete} danger loading={loading}>
+          <Button onClick={handleDelete} danger>
             Yes
           </Button>
         </Modal>
